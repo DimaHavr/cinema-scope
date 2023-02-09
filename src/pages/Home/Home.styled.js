@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { CgCopyright } from 'react-icons/cg';
 
 export const CopyIcon = styled(CgCopyright)`
