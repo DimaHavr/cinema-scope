@@ -1,16 +1,54 @@
-export const App = () => {
+import { lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Loader from './Loader';
+import SharedLayout from './SharedLayout';
+import NotFoundPage from 'pages/NotFoundPage';
+import { PrivateRoute } from '../utils/PrivateRoute';
+import { RestrictedRoute } from '../utils/RestrictedRoute';
+
+const Home = lazy(() => import('../pages/Home'));
+const Login = lazy(() => import('../pages/Login'));
+const Register = lazy(() => import('../pages/Register'));
+const Movies = lazy(() => import('../pages/Movies/Movies'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails'));
+const UserPage = lazy(() => import('../pages/UserPage'));
+const Cast = lazy(() => import('./Cast'));
+const Reviews = lazy(() => import('./Reviews'));
+
+const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route
+            path="/login"
+            element={<RestrictedRoute redirectTo="/" component={<Login />} />}
+          />
+          ;
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute redirectTo="/" component={<Register />} />
+            }
+          />
+          ;
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:id" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route
+            path="/user"
+            element={
+              <PrivateRoute redirectTo="/user" component={<UserPage />} />
+            }
+          />
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Suspense>
   );
 };
+
+export default App;
