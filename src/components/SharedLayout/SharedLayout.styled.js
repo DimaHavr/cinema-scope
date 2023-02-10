@@ -24,6 +24,11 @@ export const CinemaIcon = styled(GiFilmSpool)`
       transform: scale(1) rotateY(360deg);
     }
   }
+  @media screen and (max-width: 480px) {
+    width: 35px;
+    height: 35px;
+    margin: 0;
+  }
 `;
 
 export const Header = styled.header`

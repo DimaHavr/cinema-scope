@@ -1,8 +1,8 @@
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { RiMovie2Line, RiTeamFill } from 'react-icons/ri';
 import { AiFillYoutube } from 'react-icons/ai';
 import { MdReviews } from 'react-icons/md';
-import styled from 'styled-components';
 
 export const MovieWrapper = styled.div`
   padding: 0px 10px;
@@ -106,4 +106,19 @@ export const LinkBox = styled.div`
   display: flex;
   gap: 25px;
   padding: 20px 0 40px 0;
+`;
+
+export const Button = styled.button`
+  cursor: pointer;
+  display: flex;
+  text-transform: uppercase;
+  align-items: center;
+  color: white;
+  text-decoration-line: none;
+  gap: 5px;
+  background: none;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover {
+    transform: scale(1.1);
+  }
 `;

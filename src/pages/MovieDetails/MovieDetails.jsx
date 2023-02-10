@@ -13,18 +13,25 @@ import {
   LinkBox,
   CastIcon,
   MovieWrapper,
+  Button,
+  TrailerIcon,
 } from './MovieDetails.styled';
 import BackLink from '../../components/BackLink';
 import Box from 'components/Box';
 import Loader from 'components/Loader';
-
+import Trailer from 'components/Trailer';
 const MovieDetails = () => {
   const location = useLocation();
   const { id } = useParams();
   const [movies, setMovies] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const backLinkHref = location.state?.from ?? '/';
   const { title, overview, release_date, poster_path, vote_average } = movies;
   const posterPath = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+
+  const onToggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   useEffect(() => {
     const getFetchMovies = async () => {
@@ -76,9 +83,13 @@ const MovieDetails = () => {
                 <TextLink to="reviews" state={{ from: backLinkHref }}>
                   <ReviewsIcon /> Reviews
                 </TextLink>
+                <Button onClick={() => onToggleModal()}>
+                  <TrailerIcon /> Trailer
+                </Button>
               </LinkBox>
             </Box>
           </MovieWrapper>
+          {showModal && <Trailer onToggleModal={onToggleModal} />}
         </Box>
         <Suspense fallback={<Loader />}>
           <Outlet />

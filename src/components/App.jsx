@@ -4,7 +4,6 @@ import Loader from './Loader';
 import SharedLayout from './SharedLayout';
 import NotFoundPage from 'pages/NotFoundPage';
 import { PrivateRoute } from '../utils/PrivateRoute';
-import { RestrictedRoute } from '../utils/RestrictedRoute';
 
 const Home = lazy(() => import('../pages/Home'));
 const Login = lazy(() => import('../pages/Login'));
@@ -21,18 +20,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
-          <Route
-            path="/login"
-            element={<RestrictedRoute redirectTo="/" component={<Login />} />}
-          />
-          ;
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute redirectTo="/" component={<Register />} />
-            }
-          />
-          ;
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/movies/:id" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />
@@ -40,9 +29,7 @@ const App = () => {
           </Route>
           <Route
             path="/user"
-            element={
-              <PrivateRoute redirectTo="/user" component={<UserPage />} />
-            }
+            element={<PrivateRoute redirectTo="/" component={<UserPage />} />}
           />
         </Route>
         <Route path="*" element={<NotFoundPage />} />

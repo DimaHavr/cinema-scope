@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { auth } from 'utils/firebase.config';
 
 const useAuth = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState({});
   const [userName, setUserName] = useState('');
   useEffect(() => {
     const getLoggedIn = () => {
