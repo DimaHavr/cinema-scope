@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { fetchSearchMovie } from 'services/MoviesApi';
 import { useSearchParams } from 'react-router-dom';
@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack';
 import SearchBox from 'components/SearchBox';
 import Pagination from '@mui/material/Pagination';
 import { List, BoxLink, Item, Img, Subtitle } from './Movie.styled';
+import { size } from 'styled-system';
 
 const Movies = () => {
   const location = useLocation();
@@ -18,6 +19,7 @@ const Movies = () => {
   const [preLoader, setPreLoader] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const movieName = searchParams.get('query') ?? '';
+  const listRef = useRef(null);
 
   useEffect(() => {
     const getFetchSearchListMovies = async () => {
@@ -46,6 +48,7 @@ const Movies = () => {
 
   const handleChange = (event, value) => {
     setPage(value);
+    listRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleInputSubmit = value => {
@@ -55,7 +58,7 @@ const Movies = () => {
 
   return (
     <main>
-      <Box as="section" paddingTop="20px">
+      <Box ref={listRef} as="section" paddingTop="20px">
         <Box>
           <SearchBox onSubmit={handleInputSubmit} />
           {preLoader && <Loader />}
@@ -81,6 +84,28 @@ const Movies = () => {
           {totalPages > 1 && (
             <Stack spacing={2}>
               <Pagination
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  gap: '10px',
+                  paddingBottom: '50px',
+                  '& .css-wjh20t-MuiPagination-ul': {
+                    gap: '5px',
+                  },
+                  '& .css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root': {
+                    color: '#fff',
+                    borderColor: '#fff',
+                  },
+                  '& .css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected':
+                    {
+                      backgroundColor: '#000',
+                    },
+                  '& .css-1v2lvtn-MuiPaginationItem-root': {
+                    color: '#fff',
+                  },
+                }}
+                variant="outlined"
+                shape="rounded"
                 count={totalPages}
                 page={page}
                 onChange={handleChange}

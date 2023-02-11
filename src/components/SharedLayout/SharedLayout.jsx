@@ -13,7 +13,7 @@ import {
   Keyframes,
   CinemaIcon,
 } from './SharedLayout.styled';
-import UserMenu from 'components/UserMenu';
+import UserMenu from '../UserMenu/UserMenu';
 
 export const SharedLayout = () => {
   const { isLoggedIn } = useAuth();
