@@ -9,7 +9,6 @@ import Stack from '@mui/material/Stack';
 import SearchBox from 'components/SearchBox';
 import Pagination from '@mui/material/Pagination';
 import { List, BoxLink, Item, Img, Subtitle } from './Movie.styled';
-import { size } from 'styled-system';
 
 const Movies = () => {
   const location = useLocation();
