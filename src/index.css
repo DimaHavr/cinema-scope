@@ -50,3 +50,17 @@ button {
   border: 0;
   padding: 0;
 }
+
+.css-wjh20t-MuiPagination-ul {
+  gap: "5px";
+}
+.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
+  color: "#fff";
+  border-color: "#fff";
+}
+.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
+  background-color: "#000";
+}
+.css-1v2lvtn-MuiPaginationItem-root {
+  color: "#fff";
+}

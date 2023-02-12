@@ -20,30 +20,31 @@ import BackLink from '../../components/BackLink';
 import Box from 'components/Box';
 import Loader from 'components/Loader';
 import Trailer from 'components/Trailer';
+
 const MovieDetails = () => {
   const location = useLocation();
-  const { id } = useParams();
-  const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const { id } = useParams();
   const backLinkHref = location.state?.from ?? '/';
-  const { title, overview, release_date, poster_path, vote_average } = movies;
+  const { title, overview, release_date, poster_path, vote_average } = movie;
   const posterPath = `https://image.tmdb.org/t/p/w500/${poster_path}`;
-
-  const onToggleModal = () => {
-    setShowModal(!showModal);
-  };
 
   useEffect(() => {
     const getFetchMovies = async () => {
       try {
-        const movies = await fetchMovieDetails(id);
-        setMovies(movies);
+        const movie = await fetchMovieDetails(id);
+        setMovie(movie);
       } catch (error) {
         console.log(error);
       }
     };
     getFetchMovies();
   }, [id]);
+
+  const onToggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   return (
     <main>

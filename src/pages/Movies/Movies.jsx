@@ -31,6 +31,7 @@ const Movies = () => {
   const [totalPages, setTotalPages] = useState(() => {
     return JSON.parse(window.localStorage.getItem('totalPages')) ?? 0;
   });
+
   const setLocalStorage = (key, value) => {
     window.localStorage.setItem(key, JSON.stringify(value));
   };
