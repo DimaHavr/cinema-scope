@@ -39,6 +39,7 @@ const LoginForm = () => {
       Notify.success(`Welcome, ${user.displayName}`);
       setPreLoader(false);
       navigate('/');
+      localStorage.clear();
     } catch (error) {
       console.log(error.message);
       Notify.failure('Something went wrong...');

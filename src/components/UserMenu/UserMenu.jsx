@@ -18,6 +18,7 @@ const UserMenu = () => {
       await signOut(auth);
       setPreLoader(false);
       navigate('/');
+      localStorage.clear();
     } catch (error) {
       console.log(error.message);
       Notify.failure('Something went wrong...');
