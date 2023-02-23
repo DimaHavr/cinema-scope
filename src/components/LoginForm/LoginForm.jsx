@@ -36,7 +36,7 @@ const LoginForm = () => {
         password
       );
       const user = userCredential.user;
-      Notify.success(`Welcome, ${user.displayName}`);
+      Notify.success(`Welcome, ${user.displayName}!`);
       setPreLoader(false);
       navigate('/');
       localStorage.clear();
