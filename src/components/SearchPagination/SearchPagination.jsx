@@ -21,6 +21,9 @@ const StyledPagination = styled(Pagination)(() => ({
   '& .css-1v2lvtn-MuiPaginationItem-root': {
     color: '#fff',
   },
+  '& .css-2gftvx': {
+    color: '#fff',
+  },
 }));
 
 const SearchPagination = ({ handleChange, page, totalPages }) => {
