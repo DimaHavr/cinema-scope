@@ -1,9 +1,11 @@
 // import { Button, Container, Text, LogOutIcon } from './UserPage.styled';
 
+import UserInfo from 'components/UserInfo/UserInfo';
+
 const UserPage = () => {
   return (
     <>
-      <h1>UserPage</h1>
+      <UserInfo />
     </>
   );
 };
