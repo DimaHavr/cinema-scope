@@ -40,6 +40,7 @@ export const Text = styled(NavLink)`
     :hover,
     :focus {
       transform: scale(1.05);
+      color: #fff;
     }
   }
   @media screen and (max-width: 480px) {
