@@ -1,5 +1,5 @@
 import Box from 'components/Box';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { toast } from 'react-hot-toast';
 import { useState } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth, db } from 'utils/firebase.config';
@@ -35,7 +35,8 @@ const RegisterForm = () => {
     event.preventDefault();
     setPreLoader(true);
     if (confirmPassword !== password) {
-      Notify.failure('Passwords are different, check them and try again...');
+      toast.error('Passwords are different, check them and try again...');
+      setPreLoader(false);
       return;
     }
     try {
@@ -53,12 +54,13 @@ const RegisterForm = () => {
         displayName: name,
         email,
       });
-      Notify.success(`Welcome, ${name}`);
       setPreLoader(false);
       navigate('/');
+      window.location.reload(true);
+      toast.success(`Welcome, ${name}`);
     } catch (error) {
       console.log(error.message);
-      Notify.failure('Something went wrong...');
+      toast.error('Something went wrong...');
       setPreLoader(false);
     }
   };

@@ -4,7 +4,13 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { signOut } from 'firebase/auth';
 import { auth } from 'utils/firebase.config';
 import useAuth from '../../hooks/useAuth';
-import { Button, Container, Text, LogOutIcon } from './UserMenu.styled';
+import {
+  Button,
+  Container,
+  Text,
+  LogOutIcon,
+  UserIcon,
+} from './UserMenu.styled';
 import Loader from 'components/Loader';
 
 const UserMenu = () => {
@@ -32,7 +38,10 @@ const UserMenu = () => {
         <Loader />
       ) : (
         <>
-          <Text to="/user">{userName}</Text>
+          <Text to="/user">
+            <UserIcon />
+            {userName}
+          </Text>
           <Button onClick={() => logOut()}>
             <LogOutIcon />
           </Button>
