@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
-import { List, ItemLink, Img, Subtitle } from './MoviesList.styled';
+import { List, Item, Img, Subtitle } from './MoviesList.styled';
+import { Link } from 'react-router-dom';
 
 const MoviesList = ({ items }) => {
   const location = useLocation();
@@ -10,17 +11,13 @@ const MoviesList = ({ items }) => {
   };
 
   return (
-    <main>
-      <List>
-        {items &&
-          items.map(({ id, title, name, poster_path }) => {
-            const posterPath = `https://image.tmdb.org/t/p/w500/${poster_path}`;
-            return (
-              <ItemLink
-                key={id}
-                to={`/movies/${id}`}
-                state={{ from: location }}
-              >
+    <List>
+      {items &&
+        items.map(({ id, title, name, poster_path }) => {
+          const posterPath = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+          return (
+            <Item key={id}>
+              <Link to={`/movies/${id}`} state={{ from: location }}>
                 <Img
                   src={posterPath}
                   alt=""
@@ -29,11 +26,11 @@ const MoviesList = ({ items }) => {
                   onError={handleImageError}
                 />
                 <Subtitle> {title ?? name}</Subtitle>
-              </ItemLink>
-            );
-          })}
-      </List>
-    </main>
+              </Link>
+            </Item>
+          );
+        })}
+    </List>
   );
 };
 

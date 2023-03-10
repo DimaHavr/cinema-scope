@@ -56,7 +56,6 @@ const RegisterForm = () => {
       Notify.success(`Welcome, ${name}`);
       setPreLoader(false);
       navigate('/');
-      localStorage.clear();
     } catch (error) {
       console.log(error.message);
       Notify.failure('Something went wrong...');
@@ -78,7 +77,7 @@ const RegisterForm = () => {
                 placeholder="Name"
                 value={name}
                 onChange={event => setName(event.target.value)}
-                // required
+                required
                 maxLength="15"
               />
             </InputContainer>

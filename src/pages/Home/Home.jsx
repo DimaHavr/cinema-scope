@@ -24,6 +24,7 @@ const Home = () => {
   }, []);
   return (
     <Box
+      as="main"
       display="flex"
       flexDirection="column"
       alignItems="center"
@@ -34,7 +35,6 @@ const Home = () => {
         <MoviesList items={movies} />
       </Suspense>
       <Box
-        as="div"
         display="flex"
         alignItems="center"
         marginTop="auto"

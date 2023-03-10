@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const List = styled.ul`
   padding: 20px;
@@ -19,7 +18,7 @@ export const List = styled.ul`
   }
 `;
 
-export const ItemLink = styled(Link)`
+export const Item = styled.li`
   text-decoration: none;
   text-decoration-line: none;
   text-align: center;
@@ -27,6 +26,7 @@ export const ItemLink = styled(Link)`
   animation: slide-in-fwd-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   :hover,
   :focus {
+    border-radius: 10px;
     transform: scale(1.05);
   }
   @keyframes slide-in-fwd-center {
