@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Loader from './Loader';
 import SharedLayout from './SharedLayout';
 import NotFoundPage from 'pages/NotFoundPage';
@@ -35,6 +35,7 @@ const App = () => {
           >
             <Route path="user-watches" element={<UserWatchesPage />} />
             <Route path="user-favorite" element={<UserFavoritePage />} />
+            <Route path="" element={<Navigate to="user-watches" />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />

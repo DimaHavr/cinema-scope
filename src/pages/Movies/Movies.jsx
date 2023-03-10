@@ -1,16 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import { fetchSearchMovie } from 'services/MoviesApi';
 import { Notify } from 'notiflix';
 import Box from 'components/Box';
 import Loader from 'components/Loader';
 import SearchBox from 'components/SearchBox';
 import SearchPagination from 'components/SearchPagination';
-import { List, BoxLink, Item, Img, Subtitle } from './Movie.styled';
+import MoviesList from 'components/MoviesList';
 
 const Movies = () => {
-  const location = useLocation();
   const [preLoader, setPreLoader] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const listRef = useRef(null);
@@ -91,25 +89,7 @@ const Movies = () => {
           {preLoader && <Loader />}
           {!preLoader && (
             <>
-              <List>
-                {moviesArray &&
-                  moviesArray.map(({ id, title, poster_path }) => {
-                    const posterPath = `https://image.tmdb.org/t/p/w500/${poster_path}`;
-                    return (
-                      <Item key={id}>
-                        <BoxLink to={`${id}`} state={{ from: location }}>
-                          <Img
-                            src={posterPath}
-                            alt={title}
-                            width="300"
-                            height="450"
-                          />
-                          <Subtitle>{title}</Subtitle>
-                        </BoxLink>
-                      </Item>
-                    );
-                  })}
-              </List>
+              {moviesArray && <MoviesList items={moviesArray} />}
               {totalPages > 1 && (
                 <SearchPagination
                   totalPages={totalPages}

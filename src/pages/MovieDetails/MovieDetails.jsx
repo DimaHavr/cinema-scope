@@ -66,7 +66,7 @@ const MovieDetails = () => {
     <main>
       <Box as="section" paddingTop="20px" textAlign="center">
         <Box display="flex" flexDirection="column" alignItems="center">
-          <BackLink to={backLinkHref}>Back to movies</BackLink>
+          <BackLink to={backLinkHref}>Go to back</BackLink>
           <MovieWrapper>
             {poster_path ? (
               <Img src={posterPath} width="300" height="450" alt="" />
