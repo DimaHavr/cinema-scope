@@ -37,6 +37,7 @@ export const Container = styled.div`
 export const Text = styled(NavLink)`
   display: flex;
   gap: 10px;
+  align-items: center;
   padding: 8px 16px;
   font-weight: 600;
   color: white;
