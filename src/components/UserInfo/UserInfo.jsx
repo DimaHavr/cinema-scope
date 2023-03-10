@@ -15,8 +15,8 @@ const UserInfo = () => {
           <p>Age:</p>
           <p>City:</p>
           <Box display="flex" gridGap="10px">
-            <TextLink to="cast">Add to Watch</TextLink>
-            <TextLink to="cast">Add to Future</TextLink>
+            <TextLink to="user-watches">Watches movies</TextLink>
+            <TextLink to="user-favorite">Favorite movies</TextLink>
           </Box>
         </ContainerInfo>
         <Suspense fallback={<Loader />}>

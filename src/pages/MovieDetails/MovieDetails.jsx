@@ -1,6 +1,7 @@
 import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import { fetchMovieDetails } from 'services/MoviesApi';
+import useAuth from '../../hooks/useAuth';
 import {
   Title,
   Img,
@@ -15,20 +16,35 @@ import {
   MovieWrapper,
   Button,
   TrailerIcon,
+  AddedButton,
 } from './MovieDetails.styled';
 import BackLink from '../../components/BackLink';
 import Box from 'components/Box';
 import Loader from 'components/Loader';
 import Trailer from 'components/Trailer';
+import { useStateContext } from '../../context/StateContext';
 
 const MovieDetails = () => {
   const location = useLocation();
+  const { isLoggedIn } = useAuth();
   const [movie, setMovie] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const { id } = useParams();
   const backLinkHref = location.state?.from ?? '/';
   const { title, overview, release_date, poster_path, vote_average } = movie;
   const posterPath = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+  const {
+    addMovieToWatches,
+    addMovieToFavorites,
+    removeMovieFromWatches,
+    removeMovieFromFavorites,
+    watchesMovies,
+    favoriteMovies,
+    isMovieInWatches,
+    isMovieInFavorites,
+  } = useStateContext();
+  const isInWatches = isMovieInWatches(movie.id, watchesMovies);
+  const isInFavorites = isMovieInFavorites(movie.id, favoriteMovies);
 
   useEffect(() => {
     const getFetchMovies = async () => {
@@ -57,7 +73,12 @@ const MovieDetails = () => {
             ) : (
               <p>Poster not found</p>
             )}
-            <Box display="flex" flexDirection="column" alignItems="center">
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              gridGap="10px"
+            >
               <Title>
                 {title ? title : <p>Not info</p>}
                 {vote_average && (
@@ -76,6 +97,31 @@ const MovieDetails = () => {
                 <Text>
                   Overview: <br /> <Span>{overview}</Span>
                 </Text>
+              )}
+              {isLoggedIn && (
+                <Box display="flex" gridGap="15px">
+                  {!isInWatches ? (
+                    <AddedButton onClick={() => addMovieToWatches(movie)}>
+                      Add to watches
+                    </AddedButton>
+                  ) : (
+                    <AddedButton onClick={() => removeMovieFromWatches(movie)}>
+                      Remove from watches
+                    </AddedButton>
+                  )}
+
+                  {!isInFavorites ? (
+                    <AddedButton onClick={() => addMovieToFavorites(movie)}>
+                      Add to favorites
+                    </AddedButton>
+                  ) : (
+                    <AddedButton
+                      onClick={() => removeMovieFromFavorites(movie)}
+                    >
+                      Remove from favorites
+                    </AddedButton>
+                  )}
+                </Box>
               )}
               <LinkBox display="flex" gap="30">
                 <TextLink to="cast" state={{ from: backLinkHref }}>

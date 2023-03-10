@@ -13,6 +13,8 @@ const MovieDetails = lazy(() => import('../pages/MovieDetails'));
 const UserPage = lazy(() => import('../pages/UserPage'));
 const Cast = lazy(() => import('./Cast'));
 const Reviews = lazy(() => import('./Reviews'));
+const UserWatchesPage = lazy(() => import('./UserWatchesPage'));
+const UserFavoritePage = lazy(() => import('./UserFavoritePage'));
 
 const App = () => {
   return (
@@ -30,7 +32,10 @@ const App = () => {
           <Route
             path="/user"
             element={<PrivateRoute redirectTo="/" component={<UserPage />} />}
-          />
+          >
+            <Route path="user-watches" element={<UserWatchesPage />} />
+            <Route path="user-favorite" element={<UserFavoritePage />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
