@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'utils/firebase.config';
@@ -36,13 +36,13 @@ const LoginForm = () => {
         password
       );
       const user = userCredential.user;
-      Notify.success(`Welcome, ${user.displayName}!`);
+      toast.success(`Welcome, ${user.displayName}!`);
       setPreLoader(false);
       navigate('/');
       localStorage.clear();
     } catch (error) {
       console.log(error.message);
-      Notify.failure('Something went wrong...');
+      toast.error('Something went wrong...');
       setPreLoader(false);
     }
   };

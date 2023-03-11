@@ -8,23 +8,23 @@ const database = getDatabase();
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
-  const [watchesMovies, setWatchesMovies] = useState([]);
+  const [watchedMovies, setWatchedMovies] = useState([]);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const { userId, userName } = useAuth();
 
   useEffect(() => {
     if (userId) {
-      const watchesRef = ref(database, `${userName}/${userId}/watchesMovies`);
+      const watchedRef = ref(database, `${userName}/${userId}/watchedMovies`);
       const favoritesRef = ref(
         database,
         `${userName}/${userId}/favoriteMovies`
       );
 
-      onValue(watchesRef, snapshot => {
+      onValue(watchedRef, snapshot => {
         const data = snapshot.val();
         if (data) {
           const movies = Object.values(data);
-          setWatchesMovies(movies.reverse());
+          setWatchedMovies(movies.reverse());
         }
       });
 
@@ -38,38 +38,38 @@ export const StateContext = ({ children }) => {
     }
   }, [userId, userName]);
 
-  const addMovieToWatches = movie => {
+  const addMovieToWatched = movie => {
     if (!userId) {
       toast.error('You must be logged in to add movies');
       return;
     }
 
-    const isInWatches = isMovieInWatches(movie.id, watchesMovies);
+    const isInWatched = isMovieInWatched(movie.id, watchedMovies);
 
-    if (isInWatches) {
-      toast.success('Movie added to watches');
+    if (isInWatched) {
+      toast.success('Movie added to watched');
     } else {
-      const newWatchesMovies = [{ ...movie }, ...watchesMovies];
-      setWatchesMovies(newWatchesMovies);
+      const newWatchedMovies = [{ ...movie }, ...watchedMovies];
+      setWatchedMovies(newWatchedMovies);
       set(
-        ref(database, `${userName}/${userId}/watchesMovies`),
-        newWatchesMovies
+        ref(database, `${userName}/${userId}/watchedMovies`),
+        newWatchedMovies
       );
-      toast.success('Movie added to watches');
+      toast.success('Movie added to watched');
     }
   };
 
-  const removeMovieFromWatches = movie => {
+  const removeMovieFromWatched = movie => {
     if (!userId) {
       toast.error('You must be logged in to remove movies');
       return;
     }
 
-    const newWatchesMovies = watchesMovies.filter(item => item.id !== movie.id);
+    const newWatchedMovies = watchedMovies.filter(item => item.id !== movie.id);
 
-    setWatchesMovies(newWatchesMovies);
-    set(ref(database, `${userName}/${userId}/watchesMovies`), newWatchesMovies);
-    toast.success('Movie removed from watches', {
+    setWatchedMovies(newWatchedMovies);
+    set(ref(database, `${userName}/${userId}/watchedMovies`), newWatchedMovies);
+    toast.success('Movie removed from watched', {
       style: {
         borderRadius: '10px',
         background: '#333',
@@ -118,8 +118,8 @@ export const StateContext = ({ children }) => {
     });
   };
 
-  const isMovieInWatches = (productId, watchesMovies) => {
-    return watchesMovies.some(item => item.id === productId);
+  const isMovieInWatched = (productId, watchedMovies) => {
+    return watchedMovies.some(item => item.id === productId);
   };
 
   const isMovieInFavorites = (productId, favoriteMovies) => {
@@ -129,13 +129,13 @@ export const StateContext = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        addMovieToWatches,
-        removeMovieFromWatches,
+        addMovieToWatched,
+        removeMovieFromWatched,
         addMovieToFavorites,
         removeMovieFromFavorites,
-        watchesMovies,
+        watchedMovies,
         favoriteMovies,
-        isMovieInWatches,
+        isMovieInWatched,
         isMovieInFavorites,
       }}
     >

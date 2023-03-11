@@ -6,8 +6,7 @@ const MoviesList = ({ items }) => {
   const location = useLocation();
 
   const handleImageError = e => {
-    e.target.src =
-      'https://games.24tv.ua/resources/photos/news/202212/2222579.jpg';
+    e.target.src = '/public/empty.webp';
   };
 
   return (

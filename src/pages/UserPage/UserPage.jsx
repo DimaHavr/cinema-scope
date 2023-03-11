@@ -11,7 +11,7 @@ const UserPage = () => {
       <Box as="section">
         <Container>
           <Box display="flex" gridGap="10px">
-            <TextLink to="user-watches">Watches movies</TextLink>
+            <TextLink to="user-watched">Watched movies</TextLink>
             <TextLink to="user-favorite">Favorite movies</TextLink>
           </Box>
           <Suspense fallback={<Loader />}>
