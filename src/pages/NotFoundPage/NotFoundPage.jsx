@@ -73,7 +73,7 @@ const NotFoundPage = () => {
         width="400"
         height="200"
       />
-      <TextLInk to="/">Go back</TextLInk>
+      <TextLInk to="/">Go Home</TextLInk>
     </Box>
   );
 };

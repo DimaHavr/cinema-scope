@@ -68,11 +68,16 @@ const MovieDetails = () => {
         <Box display="flex" flexDirection="column" alignItems="center">
           <BackLink to={backLinkHref}>Go to back</BackLink>
           <MovieWrapper>
-            {poster_path ? (
-              <Img src={posterPath} width="300" height="450" alt="" />
-            ) : (
-              <p>Poster not found</p>
-            )}
+            <Img
+              src={posterPath}
+              width="300"
+              height="450"
+              alt={title}
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = process.env.PUBLIC_URL + '/empty.webp';
+              }}
+            />
             <Box
               display="flex"
               flexDirection="column"

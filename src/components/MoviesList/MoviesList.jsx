@@ -5,10 +5,6 @@ import { Link } from 'react-router-dom';
 const MoviesList = ({ items }) => {
   const location = useLocation();
 
-  const handleImageError = e => {
-    e.target.src = '/public/empty.webp';
-  };
-
   return (
     <List>
       {items &&
@@ -19,12 +15,15 @@ const MoviesList = ({ items }) => {
               <Link to={`/movies/${id}`} state={{ from: location }}>
                 <Img
                   src={posterPath}
-                  alt=""
+                  alt={title ?? name}
                   width="250"
                   height="350"
-                  onError={handleImageError}
+                  onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = process.env.PUBLIC_URL + '/empty.webp';
+                  }}
                 />
-                <Subtitle> {title ?? name}</Subtitle>
+                <Subtitle>{title ?? name}</Subtitle>
               </Link>
             </Item>
           );
