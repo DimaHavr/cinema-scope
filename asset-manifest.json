@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/cinema-scope/static/css/main.be5f68ea.css",
-    "main.js": "/cinema-scope/static/js/main.0b7b9a2e.js",
+    "main.js": "/cinema-scope/static/js/main.7e43bf29.js",
     "static/js/221.d92af74e.chunk.js": "/cinema-scope/static/js/221.d92af74e.chunk.js",
     "static/js/368.e696e6d3.chunk.js": "/cinema-scope/static/js/368.e696e6d3.chunk.js",
     "static/js/181.f26fc2e3.chunk.js": "/cinema-scope/static/js/181.f26fc2e3.chunk.js",
     "static/js/45.a65c649e.chunk.js": "/cinema-scope/static/js/45.a65c649e.chunk.js",
-    "static/js/592.e23faa43.chunk.js": "/cinema-scope/static/js/592.e23faa43.chunk.js",
+    "static/js/592.42a408db.chunk.js": "/cinema-scope/static/js/592.42a408db.chunk.js",
     "static/js/856.41ea757c.chunk.js": "/cinema-scope/static/js/856.41ea757c.chunk.js",
     "static/js/417.8cd10ebf.chunk.js": "/cinema-scope/static/js/417.8cd10ebf.chunk.js",
     "static/js/607.499f5b40.chunk.js": "/cinema-scope/static/js/607.499f5b40.chunk.js",
@@ -22,12 +22,12 @@
     "static/media/bg.webp": "/cinema-scope/static/media/bg.95e79f4db5afcc940f51.webp",
     "index.html": "/cinema-scope/index.html",
     "main.be5f68ea.css.map": "/cinema-scope/static/css/main.be5f68ea.css.map",
-    "main.0b7b9a2e.js.map": "/cinema-scope/static/js/main.0b7b9a2e.js.map",
+    "main.7e43bf29.js.map": "/cinema-scope/static/js/main.7e43bf29.js.map",
     "221.d92af74e.chunk.js.map": "/cinema-scope/static/js/221.d92af74e.chunk.js.map",
     "368.e696e6d3.chunk.js.map": "/cinema-scope/static/js/368.e696e6d3.chunk.js.map",
     "181.f26fc2e3.chunk.js.map": "/cinema-scope/static/js/181.f26fc2e3.chunk.js.map",
     "45.a65c649e.chunk.js.map": "/cinema-scope/static/js/45.a65c649e.chunk.js.map",
-    "592.e23faa43.chunk.js.map": "/cinema-scope/static/js/592.e23faa43.chunk.js.map",
+    "592.42a408db.chunk.js.map": "/cinema-scope/static/js/592.42a408db.chunk.js.map",
     "856.41ea757c.chunk.js.map": "/cinema-scope/static/js/856.41ea757c.chunk.js.map",
     "417.8cd10ebf.chunk.js.map": "/cinema-scope/static/js/417.8cd10ebf.chunk.js.map",
     "607.499f5b40.chunk.js.map": "/cinema-scope/static/js/607.499f5b40.chunk.js.map",
@@ -43,6 +43,6 @@
   },
   "entrypoints": [
     "static/css/main.be5f68ea.css",
-    "static/js/main.0b7b9a2e.js"
+    "static/js/main.7e43bf29.js"
   ]
 }
