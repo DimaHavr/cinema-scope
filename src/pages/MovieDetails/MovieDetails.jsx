@@ -34,16 +34,16 @@ const MovieDetails = () => {
   const { title, overview, release_date, poster_path, vote_average } = movie;
   const posterPath = `https://image.tmdb.org/t/p/w500/${poster_path}`;
   const {
-    addMovieToWatches,
+    addMovieToWatched,
     addMovieToFavorites,
-    removeMovieFromWatches,
+    removeMovieFromWatched,
     removeMovieFromFavorites,
-    watchesMovies,
+    watchedMovies,
     favoriteMovies,
-    isMovieInWatches,
+    isMovieInWatched,
     isMovieInFavorites,
   } = useStateContext();
-  const isInWatches = isMovieInWatches(movie.id, watchesMovies);
+  const isInWatched = isMovieInWatched(movie.id, watchedMovies);
   const isInFavorites = isMovieInFavorites(movie.id, favoriteMovies);
 
   useEffect(() => {
@@ -100,13 +100,13 @@ const MovieDetails = () => {
               )}
               {isLoggedIn && (
                 <Box display="flex" gridGap="15px">
-                  {!isInWatches ? (
-                    <AddedButton onClick={() => addMovieToWatches(movie)}>
-                      Add to watches
+                  {!isInWatched ? (
+                    <AddedButton onClick={() => addMovieToWatched(movie)}>
+                      Add to watched
                     </AddedButton>
                   ) : (
-                    <AddedButton onClick={() => removeMovieFromWatches(movie)}>
-                      Remove from watches
+                    <AddedButton onClick={() => removeMovieFromWatched(movie)}>
+                      Remove from watched
                     </AddedButton>
                   )}
 
