@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Notify } from 'notiflix';
+import { toast } from 'react-hot-toast';
 import { Wrapper, Input, Button, SearchIcon } from './SearchBox.styled';
 
 export const SearchBox = ({ onSubmit }) => {
@@ -7,9 +7,7 @@ export const SearchBox = ({ onSubmit }) => {
 
   const handleSubmit = event => {
     if (movieName.trim() === '') {
-      Notify.failure(
-        'Sorry, there are no movies matching your search query. Please try again.'
-      );
+      toast.error('The search query is empty, enter the name of the movie...');
     }
     event.preventDefault();
     onSubmit(movieName);

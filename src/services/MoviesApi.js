@@ -43,6 +43,12 @@ const fetchMovieTrailer = async id => {
   );
   return response.data;
 };
+const fetchUpcomingMovies = async id => {
+  const response = await axios.get(
+    `${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=en-US`
+  );
+  return response.data;
+};
 
 export {
   fetchMovies,
@@ -51,4 +57,5 @@ export {
   fetchMovieReviews,
   fetchSearchMovie,
   fetchMovieTrailer,
+  fetchUpcomingMovies,
 };

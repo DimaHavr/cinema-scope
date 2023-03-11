@@ -1,12 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, Suspense, lazy, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchSearchMovie } from 'services/MoviesApi';
-import { Notify } from 'notiflix';
+import { toast } from 'react-hot-toast';
 import Box from 'components/Box';
 import Loader from 'components/Loader';
 import SearchBox from 'components/SearchBox';
-import SearchPagination from 'components/SearchPagination';
-import MoviesList from 'components/MoviesList';
+import Pagination from 'components/Pagination';
+import Copyright from 'components/Copyright/Copyright';
+const MoviesList = lazy(() => import('components/MoviesList'));
+const UpcomingMovies = lazy(() => import('components/UpcomingMovies'));
 
 const Movies = () => {
   const [preLoader, setPreLoader] = useState(false);
@@ -49,7 +51,7 @@ const Movies = () => {
         const totalMovies = moviesArray.total_results;
         setTotalPages(moviesArray.total_pages);
         if (totalMovies === 0) {
-          Notify.failure(
+          toast.error(
             'Sorry, there are no movies matching your search query. Please try again.'
           );
           setSearchQuery('');
@@ -83,23 +85,40 @@ const Movies = () => {
 
   return (
     <main>
-      <Box ref={listRef} as="section" paddingTop="20px">
-        <Box>
+      <Box
+        ref={listRef}
+        as="section"
+        paddingTop="20px"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        height="100vh"
+      >
+        <Box paddingBottom=" 20px">
           <SearchBox onSubmit={handleInputSubmit} />
           {preLoader && <Loader />}
-          {!preLoader && (
-            <>
-              {moviesArray && <MoviesList items={moviesArray} />}
-              {totalPages > 1 && (
-                <SearchPagination
-                  totalPages={totalPages}
-                  page={page}
-                  handleChange={handleChange}
-                />
-              )}
-            </>
+          {moviesArray.length === 0 ? (
+            <UpcomingMovies />
+          ) : (
+            !preLoader && (
+              <>
+                {moviesArray && (
+                  <Suspense fallback={<Loader />}>
+                    <MoviesList items={moviesArray} />
+                  </Suspense>
+                )}
+                {totalPages > 1 && (
+                  <Pagination
+                    totalPages={totalPages}
+                    page={page}
+                    handleChange={handleChange}
+                  />
+                )}
+              </>
+            )
           )}
         </Box>
+        <Copyright />
       </Box>
     </main>
   );

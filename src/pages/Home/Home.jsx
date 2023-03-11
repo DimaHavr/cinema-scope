@@ -1,10 +1,9 @@
 import Box from 'components/Box';
-import { useState, useEffect } from 'react';
-import { Suspense, lazy } from 'react';
-
+import { useState, useEffect, Suspense, lazy } from 'react';
 import Loader from 'components/Loader';
 import { fetchMovies } from 'services/MoviesApi';
-import { TextLink, CopyIcon, Title } from './Home.styled';
+import { Title } from './Home.styled';
+import Copyright from 'components/Copyright/Copyright';
 const MoviesList = lazy(() => import('components/MoviesList'));
 
 const Home = () => {
@@ -34,15 +33,7 @@ const Home = () => {
       <Suspense fallback={<Loader />}>
         <MoviesList items={movies} />
       </Suspense>
-      <Box
-        display="flex"
-        alignItems="center"
-        marginTop="auto"
-        paddingBottom="10px"
-      >
-        <CopyIcon />
-        <TextLink href="https://github.com/DimaHavr">DimaHavr</TextLink>
-      </Box>
+      <Copyright />
     </Box>
   );
 };

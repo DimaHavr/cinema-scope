@@ -51,16 +51,15 @@ button {
   padding: 0;
 }
 
-.css-wjh20t-MuiPagination-ul {
-  gap: "5px";
+/* Swiper */
+
+.swiper-slide,
+swiper-slide {
+  padding: 5px 0px 20px 0px;
 }
-.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
-  color: "#fff";
-  border-color: "#fff";
+
+.swiper-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
+.swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+  bottom: 0px;
 }
-.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
-  background-color: "#000";
-}
-.css-1v2lvtn-MuiPaginationItem-root {
-  color: "#fff";
-}
+/* Swiper */
