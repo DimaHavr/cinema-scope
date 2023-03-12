@@ -31,7 +31,8 @@ const MovieDetails = () => {
   const [showModal, setShowModal] = useState(false);
   const { id } = useParams();
   const backLinkHref = location.state?.from ?? '/';
-  const { title, overview, release_date, poster_path, vote_average } = movie;
+  const { title, overview, release_date, poster_path, vote_average, genres } =
+    movie;
   const posterPath = `https://image.tmdb.org/t/p/w500/${poster_path}`;
   const {
     addMovieToWatched,
@@ -69,14 +70,10 @@ const MovieDetails = () => {
           <BackLink to={backLinkHref}>Go to back</BackLink>
           <MovieWrapper>
             <Img
-              src={posterPath}
+              src={posterPath ?? process.env.PUBLIC_URL + '/empty.webp'}
               width="300"
               height="450"
               alt={title}
-              onError={e => {
-                e.target.onerror = null;
-                e.target.src = process.env.PUBLIC_URL + '/empty.webp';
-              }}
             />
             <Box
               display="flex"
@@ -93,11 +90,25 @@ const MovieDetails = () => {
                   </TextVote>
                 )}
               </Title>
-              {release_date && (
-                <Text>
-                  Release date: <Span>{release_date}</Span>
-                </Text>
-              )}
+              <Box display="flex">
+                {release_date && (
+                  <Text>
+                    Release date: <Span>{release_date}</Span>
+                  </Text>
+                )}
+                {genres && (
+                  <>
+                    <Text>Genres:</Text>
+                    <ul>
+                      {genres.map(({ id, name }) => (
+                        <li key={id}>
+                          <Span>{name}</Span>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </Box>
               {overview && (
                 <Text>
                   Overview: <br /> <Span>{overview}</Span>
