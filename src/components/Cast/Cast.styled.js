@@ -8,6 +8,7 @@ export const List = styled.ul`
   flex: 1 1 1;
   justify-content: center;
   gap: 35px;
+  height: 100%;
   list-style-type: none;
   animation: slide-in-fwd-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 
