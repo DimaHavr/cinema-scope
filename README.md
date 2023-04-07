@@ -1,5 +1,7 @@
 <a href='https://dimahavr.github.io/cinema-scope/'>CinemaScope</a>
 
+React/React-Router/Styled Components/Firebase...
+
 EN:
 </br>
 You can be using this  app to search for movies. When you find a movie you're interested in, simply click on it to view the trailer, description, cast details, and rating.
