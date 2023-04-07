@@ -1,4 +1,4 @@
-<a href='https://dimahavr.github.io/cinema-scope/'>CinemaScope</a>
+<a href='https://dimahavr.github.io/cinema-scope/'>Live page</a>
 
 React/React-Router/Styled Components/Firebase...
 
